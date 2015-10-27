@@ -53,4 +53,5 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+
+* [v0.1.0](https://github.com/Swaven/grunt-chequire/releases/tag/v0.1.0): first release
