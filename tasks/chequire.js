@@ -16,6 +16,7 @@ module.exports = function(grunt){
     fs = require('fs'),
     EventEmitter = require('events').EventEmitter,
     done = this.async(),
+    initialCwd = process.cwd(),
     wait = new EventEmitter(),
     rx = /require\(?\s*['"](\..+?)['"]\)?/g, // regex to detect require directives
     pathList = [], // list of paths extracted from require directives
@@ -34,6 +35,9 @@ module.exports = function(grunt){
       wait.fileCounter += 1;
       if (wait.fileCounter === wait.totalRequires){
         grunt.log.writeln('All requires OK');
+        // reset cws to initial value
+        process.chdir(initialCwd);
+        grunt.verbose.writeln('reset directory to ' + initialCwd);
         done(true);
       }
     });
@@ -61,8 +65,6 @@ module.exports = function(grunt){
       var content = grunt.file.read(filePath),
       o = {source: filePath, paths: [], asis: []},
       baseDir = path.dirname(filePath);
-
-      grunt.verbose.writeln("Reading " + filePath);
 
       // Extracts all path-based require directives
       do {

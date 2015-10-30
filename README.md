@@ -54,4 +54,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-* [v0.1.0](https://github.com/Swaven/grunt-chequire/releases/tag/v0.1.0): first release
+* 2015-10-27: [v0.1.0](https://github.com/Swaven/grunt-chequire/releases/tag/v0.1.0): first release
+* 2015-10-30: [v0.1.1](https://github.com/Swaven/grunt-chequire/releases/tag/v0.1.1): bugfix (reset to initial cwd)
