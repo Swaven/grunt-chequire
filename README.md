@@ -37,8 +37,8 @@ grunt.initConfig({
 
 ### Options
 
-**exclude**
-Type: array of string. Default: []
+**exclude**  
+*Type: array of string. Default: []*  
 Files and folders that will not be checked when found in a *require* statement.
 
 ### Usage Examples
