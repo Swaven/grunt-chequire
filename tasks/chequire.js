@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * grunt-chequire
  * https://github.com/Swaven/grunt-chequire
@@ -5,8 +7,6 @@
  * Copyright (c) 2015 Swaven
  * Licensed under the MIT license.
  */
-
-'use strict';
 
 module.exports = function(grunt){
 
@@ -21,7 +21,8 @@ module.exports = function(grunt){
     rx = /require\(?\s*['"](\..+?)['"]\)?/g, // regex to detect require directives
     pathList = [], // list of paths extracted from require directives
     sourceList = [], // mapping to find which source file contains a problematic require
-    res = null;
+    res = null,
+    options = this.options({exclude: []});
 
 
     wait.on('setup', function(total){
@@ -55,6 +56,17 @@ module.exports = function(grunt){
       }
     }
 
+    // Checks given path is not in exclusion list
+    function isExcluded(filePath){
+      var found = false,
+          i = 0;
+
+      while (!found && i < options.exclude.length){
+        found = filePath.includes(options.exclude[i++]);
+      }
+      return found;
+    }
+
     this.filesSrc.forEach(function(filePath){
       // Warn on and remove invalid source files (if nonull was set).
       if (!grunt.file.exists(filePath)) {
@@ -70,11 +82,19 @@ module.exports = function(grunt){
       do {
         res = rx.exec(content);
         if (res != null) {
-          grunt.verbose.writeln('  ' + res[0]);
-          var absPath = path.resolve(baseDir, res[1]);
-          pathList.push(absPath);
-          o.paths.push(absPath);
-          o.asis.push(res[0]);
+          var log = '';
+
+          if (isExcluded(res[1])){
+            log = ' - excluded';
+          }
+          else {
+            var absPath = path.resolve(baseDir, res[1]);
+            pathList.push(absPath);
+            o.paths.push(absPath);
+            o.asis.push(res[0]);
+          }
+          
+          grunt.verbose.writeln('  ' + res[0] + log);
         }
       }
       while (res != null);

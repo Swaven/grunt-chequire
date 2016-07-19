@@ -37,7 +37,9 @@ grunt.initConfig({
 
 ### Options
 
-No configuration is available.
+**exclude**
+Type: array of string. Default: []
+Files and folders that will not be checked when found in a *require* statement.
 
 ### Usage Examples
 
@@ -54,6 +56,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+* 2016-07-19: [v0.1.3](https://github.com/Swaven/grunt-chequire/releases/tag/v0.1.3): add support for exclusion list
 * 2016-02-23: [v0.1.2](https://github.com/Swaven/grunt-chequire/releases/tag/v0.1.2): update peer dependency to support grunt v1.0.0
 * 2015-10-30: [v0.1.1](https://github.com/Swaven/grunt-chequire/releases/tag/v0.1.1): bugfix (reset to initial cwd)
 * 2015-10-27: [v0.1.0](https://github.com/Swaven/grunt-chequire/releases/tag/v0.1.0): first release
