@@ -1,7 +1,7 @@
 {
   "name": "grunt-chequire",
   "description": "Ensures require directives point to existing files (case-sensitively).",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/Swaven/grunt-chequire",
   "author": {
     "name": "Swaven",
